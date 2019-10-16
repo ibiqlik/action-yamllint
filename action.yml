@@ -1,0 +1,24 @@
+name: 'YAMLLint'
+description: 'Validate YAML syntax'
+author: 'ibiqlik'
+
+inputs:
+  file_or_dir:
+    description: 'File(s) or Directory'
+    required: true
+  config_file:
+    description: 'Path to custom configuration'
+    required: false
+  config_data:
+    description: 'Custom configuration (as YAML source)'
+    required: false
+  format:
+    description: 'Format for parsing output [parsable,standard]'
+    required: false
+  strict:
+    description: 'Return non-zero exit code on warnings as well as errors'
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

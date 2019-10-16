@@ -1,0 +1,7 @@
+#!/bin/sh -l
+
+if [ ! -z $INPUT_STRICT ]; then
+    STRICT="-s"
+fi
+
+yamllint $INPUT_CONFIG_FILE $INPUT_CONFIG_DATA $INPUT_FORMAT $STRICT $INPUT_FILE_OR_DIR 
