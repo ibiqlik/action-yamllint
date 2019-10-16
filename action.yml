@@ -1,4 +1,4 @@
-name: 'YAMLLint'
+name: 'YAML Lint'
 description: 'Validate YAML syntax'
 author: 'ibiqlik'
 
@@ -22,3 +22,7 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+
+branding:
+  color: blue
+  icon: check-square
