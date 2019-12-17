@@ -21,7 +21,13 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://ilirbekteshi/action-yamllint'
+  args:
+    - ${{ inputs.file_or_dir }}
+    - ${{ inputs.config_file }}
+    - ${{ inputs.config_data }}
+    - ${{ inputs.format }}
+    - ${{ inputs.strict }}
 
 branding:
   color: blue

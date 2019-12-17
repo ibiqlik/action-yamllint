@@ -1,0 +1,22 @@
+name: Docker Image CI
+on: 
+  push:
+    branches:
+      - master
+    paths:
+      - 'Dockerfile'
+      - 'entrypoint.sh'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_IMAGE: ilirbekteshi/action-yamllint
+      DOCKER_FILE: Dockerfile
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: |
+        docker login -u ${{ secrets.DOCKERHUB_USER }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+        docker build . --file $DOCKER_FILE -t $DOCKER_IMAGE:$GITHUB_SHA -t $DOCKER_IMAGE:latest
+        docker push $DOCKER_IMAGE:$GITHUB_SHA
+        docker push $DOCKER_IMAGE:latest
