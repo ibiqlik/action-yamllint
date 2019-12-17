@@ -4,7 +4,7 @@ author: 'ibiqlik'
 
 inputs:
   file_or_dir:
-    description: 'File(s) or Directory'
+    description: 'File(s) or Directory, separate by space if multiple files or folder are specified'
     required: true
   config_file:
     description: 'Path to custom configuration'
@@ -13,11 +13,13 @@ inputs:
     description: 'Custom configuration (as YAML source)'
     required: false
   format:
-    description: 'Format for parsing output [parsable,standard]'
+    description: 'Format for parsing output [parsable,standard,colored,auto]'
     required: false
+    default: "auto"
   strict:
     description: 'Return non-zero exit code on warnings as well as errors'
     required: false
+    default: "false"
 
 runs:
   using: 'docker'
