@@ -1,5 +1,9 @@
 #!/bin/sh -l
 
+echo "======================"
+echo "= Linting YAML files ="
+echo "======================"
+
 if [ ! -z "$INPUT_STRICT" ]; then
     STRICT="-s"
 fi
