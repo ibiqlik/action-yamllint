@@ -1,23 +1,27 @@
-#!/bin/sh -l
+#!/bin/bash -l
 
 echo "======================"
 echo "= Linting YAML files ="
 echo "======================"
 
+if [[ -n "$INPUT_CONFIG_FILE" ]]; then
+    options+=(-c "$INPUT_CONFIG_FILE")
+fi
+
+if [[ -n "$INPUT_CONFIG_DATA" ]]; then
+    options+=(-d "$INPUT_CONFIG_DATA")
+fi
+
+options+=(-f "$INPUT_FORMAT")
+
+if [[ "$INPUT_STRICT" == "true" ]]; then
+    options+=(-s)
+fi
+
+# Enable globstar so ** globs recursively
+shopt -s globstar
 # Use the current directory by default
-export INPUT_FILE_OR_DIR=${INPUT_FILE_OR_DIR:-.}
+options+=(${INPUT_FILE_OR_DIR:-.})
+shopt -u globstar
 
-STRICT=""
-if [ "$INPUT_STRICT" == "true" ]; then
-    STRICT="-s"
-fi
-
-if [ ! -z "$INPUT_CONFIG_FILE" ]; then
-    CONFIG_FILE="-c $INPUT_CONFIG_FILE"
-fi
-
-if [ ! -z "$INPUT_CONFIG_DATA" ]; then
-    CONFIG_DATA="-d $INPUT_CONFIG_DATA"
-fi
-
-yamllint $CONFIG_FILE $CONFIG_DATA -f $INPUT_FORMAT $STRICT $INPUT_FILE_OR_DIR
+yamllint "${options[@]}"
