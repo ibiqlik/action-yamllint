@@ -15,7 +15,7 @@ inputs:
   format:
     description: 'Format for parsing output [parsable,standard,colored,auto]'
     required: false
-    default: "auto"
+    default: "colored"
   strict:
     description: 'Return non-zero exit code on warnings as well as errors'
     required: false
@@ -23,7 +23,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ilirbekteshi/action-yamllint'
+  image: 'Dockerfile'
   args:
     - ${{ inputs.file_or_dir }}
     - ${{ inputs.config_file }}
