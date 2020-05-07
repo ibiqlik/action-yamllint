@@ -25,7 +25,7 @@ jobs:
   lintAllTheThings:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
     - name: yaml-lint
       uses: ibiqlik/action-yamllint@v1
       with:
@@ -44,5 +44,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: yaml-lint
-      uses: ibiqlik/action-yamllint@master
+      uses: ibiqlik/action-yamllint@v1
 ```
