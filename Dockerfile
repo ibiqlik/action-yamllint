@@ -1,6 +1,6 @@
 FROM python:3-alpine
 
-RUN pip install yamllint && \
+RUN pip install 'yamllint>=1.25.0' && \
     apk add --no-cache bash && \
     rm -rf ~/.cache/pip
 

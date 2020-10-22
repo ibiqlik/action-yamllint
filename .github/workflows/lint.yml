@@ -1,0 +1,26 @@
+name: Test Action
+on: pull_request
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: lint with config
+        uses: ./
+        with:
+          file_or_dir: test
+          config_data: |
+            extends: default
+            ignore: nok.yaml
+            rules:
+              new-line-at-end-of-file:
+                level: warning
+              trailing-spaces:
+                level: warning
+
+      - name: lint all (but pass)
+        continue-on-error: true
+        uses: ./
+        with:
+          file_or_dir: test
+          strict: true
