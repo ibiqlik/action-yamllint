@@ -9,7 +9,15 @@ jobs:
         uses: ./
         with:
           file_or_dir: test
-          config_data: "{extends: default, ignore: nok.yaml, rules: {new-line-at-end-of-file: disable}}"
+          config_data: |
+            extends: default
+            ignore: nok.yaml
+            rules:
+              new-line-at-end-of-file:
+                level: warning
+              trailing-spaces:
+                level: warning
+
       - name: lint all (but pass)
         continue-on-error: true
         uses: ./

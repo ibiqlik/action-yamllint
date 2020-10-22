@@ -4,6 +4,12 @@ This action executes `yamllint` (https://github.com/adrienverge/yamllint) agains
 
 ## Usage
 
+Simple as:
+
+```yaml
+- uses: ibiqlik/action-yamllint@v2
+```
+
 ### Optional parameters
 
 - `config_file` - Path to custom configuration
@@ -45,4 +51,24 @@ jobs:
     - uses: actions/checkout@v1
     - name: yaml-lint
       uses: ibiqlik/action-yamllint@v2
+```
+
+**Note:** Action will use `.yamllint` as configuration file automatically if it is available in root.
+
+Config data examples:
+
+```yaml
+# Single line
+config_data: "{extends: default, rules: {new-line-at-end-of-file: disable}}"
+```
+
+``` yaml
+# Multi line
+config_data: |
+  extends: default
+  rules:
+    new-line-at-end-of-file:
+      level: warning
+    trailing-spaces:
+      level: warning
 ```
