@@ -1,0 +1,8 @@
+---
+rules:
+  document-start: disable
+  key-duplicates: enable
+  line-length: disable
+  new-lines:
+    type: unix
+  trailing-spaces: enable
