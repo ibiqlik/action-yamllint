@@ -9,12 +9,12 @@ This action executes `yamllint` (https://github.com/adrienverge/yamllint) agains
 - `config_file` - Path to custom configuration
 - `config_data` - Custom configuration (as YAML source)
 - `file_or_dir` - Enter file/folder (space separated), wildcards accepted. Examples:
-    - `.` - run against all yaml files in a directory recursively (default)
-    - `file1.yaml`
-    - `file1.yaml file2.yaml`
-    - `kustomize/**/*.yaml mychart/*values.yaml`
-- `format` - Format for parsing output [parsable,standard,colored,auto] (default: colored)
-- `strict` - Return non-zero exit code on warnings as well as errors [true,false]
+  - `.` - run against all yaml files in a directory recursively (default)
+  - `file1.yaml`
+  - `file1.yaml file2.yaml`
+  - `kustomize/**/*.yaml mychart/*values.yaml`
+- `format` - Format for parsing output [parsable,standard,colored,github,auto] (default: github)
+- `strict` - Return non-zero exit code on warnings as well as errors [true,false] (default: false)
 
 ### Example usage in workflow
 
@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: yaml-lint
-      uses: ibiqlik/action-yamllint@v1
+      uses: ibiqlik/action-yamllint@v2
       with:
         file_or_dir: myfolder/*values*.yaml
         config_file: .yamllint.yml
@@ -44,5 +44,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: yaml-lint
-      uses: ibiqlik/action-yamllint@v1
+      uses: ibiqlik/action-yamllint@v2
 ```

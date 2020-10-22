@@ -5,7 +5,7 @@ author: 'ibiqlik'
 inputs:
   file_or_dir:
     description: 'File(s) or Directory, separate by space if multiple files or folder are specified'
-    required: true
+    required: false
   config_file:
     description: 'Path to custom configuration'
     required: false
@@ -13,9 +13,9 @@ inputs:
     description: 'Custom configuration (as YAML source)'
     required: false
   format:
-    description: 'Format for parsing output [parsable,standard,colored,auto]'
+    description: 'Format for parsing output [parsable,standard,colored,github,auto]'
     required: false
-    default: "colored"
+    default: "github"
   strict:
     description: 'Return non-zero exit code on warnings as well as errors'
     required: false
