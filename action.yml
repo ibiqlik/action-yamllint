@@ -22,14 +22,16 @@ inputs:
     default: "false"
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.file_or_dir }}
-    - ${{ inputs.config_file }}
-    - ${{ inputs.config_data }}
-    - ${{ inputs.format }}
-    - ${{ inputs.strict }}
+  using: 'composite'
+  steps:
+    - run: ${{ github.action_path }}/entrypoint.sh
+      shell: bash
+      env:
+        INPUT_FILE_OR_DIR: ${{ inputs.file_or_dir }}
+        INPUT_CONFIG_FILE: ${{ inputs.config_file }}
+        INPUT_CONFIG_DATA: ${{ inputs.config_data }}
+        INPUT_FORMAT: ${{ inputs.format }}
+        INPUT_STRICT: ${{ inputs.strict }}
 
 branding:
   color: blue
