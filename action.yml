@@ -15,7 +15,7 @@ inputs:
   format:
     description: 'Format for parsing output [parsable,standard,colored,github,auto]'
     required: false
-    default: "github"
+    default: "parsable"
   strict:
     description: 'Return non-zero exit code on warnings as well as errors'
     required: false
