@@ -20,6 +20,10 @@ inputs:
     description: 'Return non-zero exit code on warnings as well as errors'
     required: false
     default: "false"
+  no_warnings:
+    description: 'Output only error level problems'
+    required: false
+    default: "false"
 
 runs:
   using: 'composite'
@@ -32,6 +36,7 @@ runs:
         INPUT_CONFIG_DATA: ${{ inputs.config_data }}
         INPUT_FORMAT: ${{ inputs.format }}
         INPUT_STRICT: ${{ inputs.strict }}
+        INPUT_NO_WARNINGS: ${{ inputs.no_warnings }}
 
 branding:
   color: blue
