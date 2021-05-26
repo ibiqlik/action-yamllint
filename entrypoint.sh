@@ -18,6 +18,10 @@ if [[ "$INPUT_STRICT" == "true" ]]; then
     options+=(-s)
 fi
 
+if [[ "$INPUT_NO_WARNINGS" == "true" ]]; then
+    options+=(--no-warnings)
+fi
+
 # Enable globstar so ** globs recursively
 shopt -s globstar
 # Use the current directory by default

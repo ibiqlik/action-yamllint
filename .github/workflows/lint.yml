@@ -18,7 +18,15 @@ jobs:
               trailing-spaces:
                 level: warning
 
-      - name: lint all (but pass)
+      - name: lint all - no warnings (continue on error)
+        continue-on-error: true
+        uses: ./
+        with:
+          file_or_dir: test
+          strict: true
+          no_warnings: true
+
+      - name: lint all (continue on error)
         continue-on-error: true
         uses: ./
         with:

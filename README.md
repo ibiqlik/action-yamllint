@@ -19,8 +19,9 @@ Simple as:
   - `file1.yaml`
   - `file1.yaml file2.yaml`
   - `kustomize/**/*.yaml mychart/*values.yaml`
-- `format` - Format for parsing output [parsable,standard,colored,github,auto] (default: parsable)
-- `strict` - Return non-zero exit code on warnings as well as errors [true,false] (default: false)
+- `format` - Format for parsing output `[parsable,standard,colored,github,auto] (default: parsable)`
+- `strict` - Return non-zero exit code on warnings as well as errors `[true,false] (default: false)`
+- `no_warnings` - Output only error level problems `[true,false] (default: false)`
 
 **Note:** If `.yamllint` configuration file exists in your root folder, yamllint will automatically use it.
 
