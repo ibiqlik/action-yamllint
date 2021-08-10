@@ -10,7 +10,7 @@ Simple as:
 - uses: ibiqlik/action-yamllint@v3
 ```
 
-### Optional parameters
+### Optional input parameters
 
 - `config_file` - Path to custom configuration
 - `config_data` - Custom configuration (as YAML source)
@@ -24,6 +24,12 @@ Simple as:
 - `no_warnings` - Output only error level problems `[true,false] (default: false)`
 
 **Note:** If `.yamllint` configuration file exists in your root folder, yamllint will automatically use it.
+
+### Outputs
+
+`logfile` - Path to yamllint log file
+
+`${{ steps.<step>.outputs.logfile }}`
 
 ### Example usage in workflow
 
@@ -72,4 +78,25 @@ config_data: |
       level: warning
     trailing-spaces:
       level: warning
+```
+
+Use output to save/upload the log in artifact. Note, you must have `id` in the step running the yamllint action.
+
+```yaml
+name: Yaml Lint
+on: [push]
+jobs:
+  lintAllTheThings:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - id: yaml-lint
+      uses: ibiqlik/action-yamllint@v3
+
+    - run: echo ${{ steps.yaml-lint.outputs.logfile }}
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: yamllint-logfile
+        path: ${{ steps.yaml-lint.outputs.logfile }}
 ```
