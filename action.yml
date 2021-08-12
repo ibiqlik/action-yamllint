@@ -34,7 +34,10 @@ runs:
   using: 'composite'
   steps:
     - id: yamllint
-      run: ${{ github.action_path }}/entrypoint.sh
+      run: |
+        LOGFILE=yamllint.log
+        ${{ github.action_path }}/entrypoint.sh | tee -a $LOGFILE
+        echo "::set-output name=logfile::$(realpath ${LOGFILE})"
       shell: bash
       env:
         INPUT_FILE_OR_DIR: ${{ inputs.file_or_dir }}
