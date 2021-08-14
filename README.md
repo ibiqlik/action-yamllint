@@ -34,32 +34,34 @@ Simple as:
 ### Example usage in workflow
 
 ```yaml
+---
 name: Yaml Lint
-on: [push]
+on: [push]  # yamllint disable-line rule:truthy
 jobs:
   lintAllTheThings:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: yaml-lint
-      uses: ibiqlik/action-yamllint@v3
-      with:
-        file_or_dir: myfolder/*values*.yaml
-        config_file: .yamllint.yml
+      - uses: actions/checkout@v1
+      - name: yaml-lint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: myfolder/*values*.yaml
+          config_file: .yamllint.yml
 ```
 
 Or just simply check all yaml files in the repository:
 
 ```yaml
+---
 name: Yaml Lint
-on: [push]
+on: [push]  # yamllint disable-line rule:truthy
 jobs:
   lintAllTheThings:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: yaml-lint
-      uses: ibiqlik/action-yamllint@v3
+      - uses: actions/checkout@v1
+      - name: yaml-lint
+        uses: ibiqlik/action-yamllint@v3
 ```
 
 Config data examples:
@@ -83,20 +85,21 @@ config_data: |
 Use output to save/upload the log in artifact. Note, you must have `id` in the step running the yamllint action.
 
 ```yaml
+---
 name: Yaml Lint
-on: [push]
+on: [push]  # yamllint disable-line rule:truthy
 jobs:
   lintAllTheThings:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - id: yaml-lint
-      uses: ibiqlik/action-yamllint@v3
+      - uses: actions/checkout@v1
+      - id: yaml-lint
+        uses: ibiqlik/action-yamllint@v3
 
-    - run: echo ${{ steps.yaml-lint.outputs.logfile }}
+      - run: echo ${{ steps.yaml-lint.outputs.logfile }}
 
-    - uses: actions/upload-artifact@v2
-      with:
-        name: yamllint-logfile
-        path: ${{ steps.yaml-lint.outputs.logfile }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: yamllint-logfile
+          path: ${{ steps.yaml-lint.outputs.logfile }}
 ```
