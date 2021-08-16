@@ -4,6 +4,10 @@ echo "======================"
 echo "= Linting YAML files ="
 echo "======================"
 
+if [[ -z "$LOGFILE" ]]; then
+  LOGFILE=$(mktemp yamllint-XXXXXX)
+fi
+
 if [[ -n "$INPUT_CONFIG_FILE" ]]; then
     options+=(-c "$INPUT_CONFIG_FILE")
 fi
@@ -28,4 +32,6 @@ shopt -s globstar
 options+=("${INPUT_FILE_OR_DIR:-.}")
 shopt -u globstar
 
-yamllint "${options[@]}"
+yamllint "${options[@]}" | tee -a "$LOGFILE"
+
+echo "::set-output name=logfile::$(realpath ${LOGFILE})"

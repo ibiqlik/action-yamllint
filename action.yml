@@ -35,9 +35,8 @@ runs:
   steps:
     - id: yamllint
       run: |
-        LOGFILE=yamllint.log
-        ${{ github.action_path }}/entrypoint.sh | tee -a $LOGFILE
-        echo "::set-output name=logfile::$(realpath ${LOGFILE})"
+        export LOGFILE=$(mktemp yamllint-XXXXXX)
+        ${{ github.action_path }}/entrypoint.sh
       shell: bash
       env:
         INPUT_FILE_OR_DIR: ${{ inputs.file_or_dir }}
