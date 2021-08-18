@@ -24,8 +24,7 @@ fi
 
 # Enable globstar so ** globs recursively
 shopt -s globstar
-# Use the current directory by default
-options+=("${INPUT_FILE_OR_DIR:-.}")
-shopt -u globstar
 
-yamllint "${options[@]}"
+yamllint "${options[@]}" ${INPUT_FILE_OR_DIR:-.}
+
+shopt -u globstar
