@@ -28,10 +28,9 @@ fi
 
 # Enable globstar so ** globs recursively
 shopt -s globstar
-# Use the current directory by default
-options+=("${INPUT_FILE_OR_DIR:-.}")
-shopt -u globstar
 
-yamllint "${options[@]}" | tee -a "$LOGFILE"
+yamllint "${options[@]}" ${INPUT_FILE_OR_DIR:-.} | tee -a "$LOGFILE"
+
+shopt -u globstar
 
 echo "::set-output name=logfile::$(realpath ${LOGFILE})"

@@ -37,6 +37,11 @@ jobs:
           file_or_dir: test
           strict: true
 
+      - id: default-lint-all
+        name: default lint all (continue on error)
+        continue-on-error: true
+        uses: ./
+
       - id: print-output
         name: Print output
         run: |
