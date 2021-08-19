@@ -1,4 +1,5 @@
 #!/bin/bash -l
+set -o pipefail
 
 echo "======================"
 echo "= Linting YAML files ="
@@ -29,7 +30,8 @@ fi
 # Enable globstar so ** globs recursively
 shopt -s globstar
 
-yamllint "${options[@]}" ${INPUT_FILE_OR_DIR:-.} | tee -a "$LOGFILE"
+yamllint "${options[@]}" ${INPUT_FILE_OR_DIR:-.}
+# | tee -a "$LOGFILE"
 
 shopt -u globstar
 

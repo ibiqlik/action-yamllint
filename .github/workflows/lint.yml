@@ -6,6 +6,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Get yamllint version
+        run: yamllint --version
+
       - id: lint-with-config
         name: lint with config
         uses: ./
@@ -31,11 +34,12 @@ jobs:
 
       - id: lint-all-continue
         name: lint all (continue on error)
-        continue-on-error: true
+        # continue-on-error: true
         uses: ./
         with:
           file_or_dir: test
           strict: true
+          format: standard
 
       - id: default-lint-all
         name: default lint all (continue on error)
@@ -43,7 +47,11 @@ jobs:
         uses: ./
 
       - id: print-output
+        if: always()
         name: Print output
         run: |
           echo ${{ steps.lint-with-config.outputs.logfile }}
           cat ${{ steps.lint-with-config.outputs.logfile }}
+
+          echo ${{ steps.lint-all-continue.outputs.logfile }}
+          cat ${{ steps.lint-all-continue.outputs.logfile }}

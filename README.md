@@ -99,6 +99,7 @@ jobs:
       - run: echo ${{ steps.yaml-lint.outputs.logfile }}
 
       - uses: actions/upload-artifact@v2
+        if: always()
         with:
           name: yamllint-logfile
           path: ${{ steps.yaml-lint.outputs.logfile }}
