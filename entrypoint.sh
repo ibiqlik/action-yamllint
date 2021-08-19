@@ -27,4 +27,8 @@ shopt -s globstar
 
 yamllint "${options[@]}" ${INPUT_FILE_OR_DIR:-.}
 
+exitcode=$?
+
 shopt -u globstar
+
+exit $exitcode
