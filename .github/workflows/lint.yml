@@ -25,7 +25,7 @@ jobs:
 
       - id: lint-all-no-warnings
         name: lint all - no warnings (continue on error)
-        continue-on-error: true
+        # continue-on-error: true
         uses: ./
         with:
           file_or_dir: test
@@ -43,7 +43,7 @@ jobs:
 
       - id: default-lint-all
         name: default lint all (continue on error)
-        continue-on-error: true
+        # continue-on-error: true
         uses: ./
 
       - id: print-output
