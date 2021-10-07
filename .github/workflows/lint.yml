@@ -34,7 +34,7 @@ jobs:
 
       - id: lint-all-continue
         name: lint all (continue on error)
-        # continue-on-error: true
+        continue-on-error: true
         uses: ./
         with:
           file_or_dir: test
