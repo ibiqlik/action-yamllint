@@ -5,7 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: lint with config
+
+      - name: Get yamllint version
+        run: yamllint --version
+
+      - id: lint-with-config
+        name: lint with config
         uses: ./
         with:
           file_or_dir: test
@@ -18,7 +23,8 @@ jobs:
               trailing-spaces:
                 level: warning
 
-      - name: lint all - no warnings (continue on error)
+      - id: lint-all-no-warnings
+        name: lint all - no warnings (continue on error)
         continue-on-error: true
         uses: ./
         with:
@@ -26,13 +32,26 @@ jobs:
           strict: true
           no_warnings: true
 
-      - name: lint all (continue on error)
+      - id: lint-all-continue
+        name: lint all (continue on error)
         continue-on-error: true
         uses: ./
         with:
           file_or_dir: test
           strict: true
+          format: standard
 
-      - name: default lint all (continue on error)
+      - id: default-lint-all
+        name: default lint all (continue on error)
         continue-on-error: true
         uses: ./
+
+      - id: print-output
+        if: always()
+        name: Print output
+        run: |
+          echo ${{ steps.lint-with-config.outputs.logfile }}
+          cat ${{ steps.lint-with-config.outputs.logfile }}
+
+          echo ${{ steps.lint-all-continue.outputs.logfile }}
+          cat ${{ steps.lint-all-continue.outputs.logfile }}

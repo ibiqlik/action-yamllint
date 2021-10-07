@@ -25,10 +25,18 @@ inputs:
     required: false
     default: "false"
 
+outputs:
+  logfile:
+    description: "Yamllint log file path"
+    value: ${{ steps.yamllint.outputs.logfile }}
+
 runs:
   using: 'composite'
   steps:
-    - run: ${{ github.action_path }}/entrypoint.sh
+    - id: yamllint
+      run: |
+        # export LOGFILE=$(mktemp yamllint-XXXXXX)
+        ${{ github.action_path }}/entrypoint.sh
       shell: bash
       env:
         INPUT_FILE_OR_DIR: ${{ inputs.file_or_dir }}
