@@ -1,5 +1,4 @@
 #!/bin/bash -l
-set -o pipefail
 
 echo "======================"
 echo "= Linting YAML files ="
@@ -33,6 +32,7 @@ shopt -s globstar
 yamllint "${options[@]}" ${INPUT_FILE_OR_DIR:-.}
 # | tee -a "$LOGFILE"
 
+exitcode=$?
+
 shopt -u globstar
 
-echo "::set-output name=logfile::$(realpath ${LOGFILE})"
