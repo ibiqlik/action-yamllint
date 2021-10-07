@@ -1,5 +1,6 @@
 #!/bin/bash -l
 # shellcheck disable=SC2086
+set -o pipefail
 
 echo "======================"
 echo "= Linting YAML files ="
