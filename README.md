@@ -1,6 +1,6 @@
 # GitHub YAMLlint
 
-This action executes `yamllint` (https://github.com/adrienverge/yamllint) against file(s) or folder
+This action executes `yamllint` (https://github.com/adrienverge/yamllint) against files or folder
 
 ## Usage
 
@@ -23,13 +23,15 @@ Simple as:
 - `strict` - Return non-zero exit code on warnings as well as errors `[true,false] (default: false)`
 - `no_warnings` - Output only error level problems `[true,false] (default: false)`
 
-**Note:** If `.yamllint` configuration file exists in your root folder, yamllint will automatically use it.
+**Note:** If `.yamllint` configuration file exists in your root folder, yamllint automatically uses it.
 
 ### Outputs
 
 `logfile` - Path to yamllint log file
 
 `${{ steps.<step>.outputs.logfile }}`
+
+**Note:** Each yamllint run (for example if you define multiple yamllint steps) has its own log
 
 ### Example usage in workflow
 
@@ -49,7 +51,7 @@ jobs:
           config_file: .yamllint.yml
 ```
 
-Or just simply check all yaml files in the repository:
+Or just simply lint all yaml files in the repository:
 
 ```yaml
 ---
