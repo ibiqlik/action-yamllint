@@ -1,4 +1,5 @@
 #!/bin/bash -l
+# shellcheck disable=SC2086
 
 echo "======================"
 echo "= Linting YAML files ="
@@ -29,10 +30,10 @@ fi
 # Enable globstar so ** globs recursively
 shopt -s globstar
 
-yamllint "${options[@]}" ${INPUT_FILE_OR_DIR:-.}
-# | tee -a "$LOGFILE"
-
+yamllint "${options[@]}" ${INPUT_FILE_OR_DIR:-.} | tee -a "$LOGFILE"
 exitcode=$?
 
 shopt -u globstar
+echo "::set-output name=logfile::$(realpath ${LOGFILE})"
 
+exit $exitcode

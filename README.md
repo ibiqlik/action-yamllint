@@ -41,7 +41,7 @@ jobs:
   lintAllTheThings:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
         with:
@@ -59,7 +59,7 @@ jobs:
   lintAllTheThings:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
 ```
@@ -92,7 +92,7 @@ jobs:
   lintAllTheThings:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - id: yaml-lint
         uses: ibiqlik/action-yamllint@v3
 
