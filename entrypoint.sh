@@ -35,6 +35,6 @@ yamllint "${options[@]}" ${INPUT_FILE_OR_DIR:-.} | tee -a "$LOGFILE"
 exitcode=$?
 
 shopt -u globstar
-echo "::set-output name=logfile::$(realpath ${LOGFILE})"
+echo "logfile=$(realpath ${LOGFILE})" >> "$GITHUB_OUTPUT"
 
 exit $exitcode
