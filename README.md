@@ -106,3 +106,7 @@ jobs:
           name: yamllint-logfile
           path: ${{ steps.yaml-lint.outputs.logfile }}
 ```
+
+### Using self-hosted runner with containers
+
+If you are using Github Actions self-hosted with containers, please refer to the following guide [self-hosted-runner.md](./self-hosted-runner.md).

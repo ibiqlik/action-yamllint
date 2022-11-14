@@ -36,7 +36,7 @@ runs:
     - id: yamllint
       run: |
         # export LOGFILE=$(mktemp yamllint-XXXXXX)
-        ${{ github.action_path }}/entrypoint.sh
+        ${GITHUB_ACTION_PATH}/entrypoint.sh
       shell: bash
       env:
         INPUT_FILE_OR_DIR: ${{ inputs.file_or_dir }}
